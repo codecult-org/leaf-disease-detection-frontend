@@ -24,9 +24,9 @@ function App() {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
-
+    //import.meta.env.API
     try {
-      const response = await axios.post(import.meta.env.API, formData, {
+      const response = await axios.post("https://leaf-serveit.debsen.co/checking", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
