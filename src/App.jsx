@@ -26,7 +26,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost:5000/checking', formData, {
+      const response = await axios.post(import.meta.env.API, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
