@@ -1,24 +1,19 @@
+'use client'
 import React, { useState } from 'react'
 import axios from 'axios';
 import './App.css';
+import {ImagePicker} from './ImagePicker'
+import { FloatingNav } from "./floating-navbar.tsx";
+import Image from 'next/image'
 
-function App() {
+function Component() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState('');
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
 
-    // create a URL for the image and set it as the source for the image
-    if (selectedFile) {
-      const imageUrl = URL.createObjectURL(selectedFile);
-      setImageSrc(imageUrl);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,30 +38,31 @@ function App() {
   };
 
   return (
-    <>
-      <div>
-        <div style={{ border: '1px solid grey' }}>
-          <h4>Upload the photo of plant leaf: </h4>
-          <div style={{ border: '1px solid grey', padding: '4px' }}>
-            <form onSubmit={handleSubmit}>
-              <input name='file' type="file" accept="image/*" onChange={handleFileChange} />
-              <button type="submit">Upload</button>
-            </form>
-          </div>
+    <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] mt-20">
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div className="flex justify-center">
+              <ImagePicker file={file} setFile={setFile} setImageSrc={setImageSrc} imageSrc={imageSrc}/>
+            </div>
+            <div className="flex m-5 justify-center">
+              <button className=" bg-lime-800" type="submit">Detect</button>
+            </div>
+          </form>
         </div>
+      <div className="flex justify-evenly ">
         <div>
           <h4>Uploaded Image Preview: </h4>
-          {imageSrc && <img src={imageSrc} alt="Selected" style={{ width: '100%' }} />}
+          {imageSrc && <Image src={imageSrc} alt="Selected" width={350} height={350}/>}
+        </div>
+        <div style={{ border: '1px solid grey' }}>
+          {
+            loading ? <p>Disease detection: Loading...</p> :
+            error ? <p>Error: {error.message}</p> : <p>Disease detected : {JSON.stringify(data, null, 2)}</p>
+          }
         </div>
       </div>
-      <div style={{ border: '1px solid grey' }}>
-        {
-          loading ? <p>Disease detection: Loading...</p> :
-            error ? <p>Error: {error.message}</p> : <p>Disease detected : {JSON.stringify(data, null, 2)}</p>
-        }
-      </div>
-    </>
+    </main>
   )
 }
 
-export default App;
+export default Component;
