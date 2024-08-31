@@ -49,7 +49,7 @@ function App() {
           <h4>Upload the photo of plant leaf: </h4>
           <div style={{ border: '1px solid grey', padding: '4px' }}>
             <form onSubmit={handleSubmit}>
-              <input name='file' type="file" onChange={handleFileChange} />
+              <input name='file' type="file" accept="image/*" onChange={handleFileChange} />
               <button type="submit">Upload</button>
             </form>
           </div>
