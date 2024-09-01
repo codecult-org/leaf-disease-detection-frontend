@@ -12,8 +12,8 @@ interface ImagePickerProps {
 
 export function ImagePicker({ file, setFile, imageSrc, setImageSrc }: ImagePickerProps) {
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const handleFileChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files ? e.target.files[0] : null;
     setFile(selectedFile);
 
     // create a URL for the image and set it as the source for the image
