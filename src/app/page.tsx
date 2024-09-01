@@ -48,7 +48,7 @@ function Component() {
   };
 
   return (
-    <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] mt-20">
+    <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] mt-20 p-5">
       <div>
         <form onSubmit={handleSubmit}>
           <div className="flex justify-center">

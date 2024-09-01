@@ -9,7 +9,7 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      animation:{
+      animation: {
         spotlight: 'spotlight 2s ease-in-out forwards',
         shimmer: "shimmer 2s linear infinite"
       },
@@ -24,11 +24,11 @@ const config: Config = {
         },
         spotlight: {
           "0%": {
-            opacity: 0,
+            opacity: "0",  // Changed from 0 to "0"
             transform: "translate(-72%, -62%) scale(0.5)",
           },
           "100%": {
-            opacity: 1,
+            opacity: "1",  // Changed from 1 to "1"
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
@@ -42,4 +42,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
