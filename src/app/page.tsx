@@ -4,6 +4,8 @@ import axios, { AxiosError } from 'axios';
 import './App.css';
 import { ImagePicker } from './ImagePicker';
 import Image from 'next/image';
+import { LineWave , MutatingDots} from 'react-loader-spinner';
+
 
 interface ApiResponse {
   disease: string; // Replace with actual structure returned by your API
@@ -53,20 +55,60 @@ function Component() {
             <ImagePicker file={file} setFile={setFile} setImageSrc={setImageSrc} imageSrc={imageSrc} />
           </div>
           <div className="flex m-5 justify-center">
-            <button className="bg-lime-800" type="submit">Detect</button>
+            <button type="submit" className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-0 focus:ring-slate-400 focus:ring-offset-1 focus:ring-offset-slate-50">
+        Detect
+      </button>
           </div>
         </form>
       </div>
       <div className="flex justify-evenly">
         <div>
-          <h4>Uploaded Image Preview:</h4>
-          {imageSrc && <Image src={imageSrc} alt="Selected" width={350} height={350} />}
+          <h4 className="text-lg font-semibold text-white mb-2">Image Preview:</h4>
+            
+          {imageSrc ? ( 
+            <div className="overflow-hidden rounded-lg">
+            <Image src={imageSrc} alt="Selected" width={250} height={250} />
+            </div>
+          ) : (<LineWave
+  visible={true}
+  height="100"
+  width="100"
+  color="#4fa94d"
+  ariaLabel="line-wave-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  firstLineColor=""
+  middleLineColor=""
+  lastLineColor=""
+  />)}
         </div>
-        <div style={{ border: '1px solid grey' }}>
-          {loading ? <p>Disease detection: Loading...</p> :
-            error ? <p>Error: {error.message}</p> :
-            data ? <p>Disease detected: {JSON.stringify(data, null, 2)}</p> :
-            <p>No data</p>
+        <div>
+        <h4 className="text-lg font-semibold text-white mb-2">Result here:</h4>
+          {loading ? <MutatingDots
+  visible={true}
+  height="100"
+  width="100"
+  color="#4fa94d"
+  secondaryColor="#4fa94d"
+  radius="12.5"
+  ariaLabel="mutating-dots-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  /> :
+            error ? <p className="text-lg font-medium text-red-500 mb-2">Error: {error.message}</p> :
+            data ? <p>Result: {JSON.stringify(data, null, 2)}</p> :
+            (<LineWave
+  visible={true}
+  height="100"
+  width="100"
+  color="#4fa94d"
+  ariaLabel="line-wave-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  firstLineColor=""
+  middleLineColor=""
+  lastLineColor=""
+  />)
           }
         </div>
       </div>

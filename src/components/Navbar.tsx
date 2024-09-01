@@ -10,8 +10,7 @@ function Navbar({ className }: { className?: string }) {
       <Menu setActive={setActive}>
         <MenuItem setActive={setActive} active={active} item="Leaf disease detection">
           <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/web-dev">Github repo link</HoveredLink>
-            <HoveredLink href="/interface-design">Contributors</HoveredLink>
+            <HoveredLink href="https://github.com/codecult-org">github repo</HoveredLink>
           </div>
         </MenuItem>
         </Menu>
