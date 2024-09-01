@@ -3,7 +3,14 @@
 import { FileInput, Label } from "flowbite-react";
 import React from 'react'
 
-export function ImagePicker({ file, setFile, imageSrc, setImageSrc }) {
+interface ImagePickerProps {
+  file: File | null;
+  setFile: (file: File | null) => void;
+  imageSrc: string | null;
+  setImageSrc: (src: string | null) => void;
+}
+
+export function ImagePicker({ file, setFile, imageSrc, setImageSrc }: ImagePickerProps) {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
