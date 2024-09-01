@@ -14,7 +14,7 @@ function Component() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<AxiosError | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [imageSrc, setImageSrc] = useState<string>('');
+  const [imageSrc, setImageSrc] = useState<string | null>(null); // Updated to handle null
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ function Component() {
 
     setLoading(true);
     setError(null);
-  //import.meta.env.API
+
     try {
       const response = await axios.post<ApiResponse>("https://leaf-serveit.debsen.co/checking", formData, {
         headers: {
@@ -36,7 +36,7 @@ function Component() {
         },
       });
       setData(response.data);
-      console.log('File uploaded successfully:', response.data, response); // for testing
+      console.log('File uploaded successfully:', response.data, response);
     } catch (error) {
       setError(error as AxiosError);
       console.error('Error uploading file:', error);
