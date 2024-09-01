@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import './App.css';
 import {ImagePicker} from './ImagePicker'
-import { FloatingNav } from "./floating-navbar.tsx";
 import Image from 'next/image'
 
 function Component() {
