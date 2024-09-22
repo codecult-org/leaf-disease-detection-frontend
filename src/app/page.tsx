@@ -32,7 +32,7 @@ function Component() {
     setError(null);
 
     try {
-      const response = await axios.post<ApiResponse>("https://leaf-serveit.debsen.co/checking", formData, {
+      const response = await axios.post<ApiResponse>(process.env.API as string, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
