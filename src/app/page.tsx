@@ -32,7 +32,8 @@ function Component() {
     setError(null);
 
     try {
-      const response = await axios.post<ApiResponse>(process.env.NEXT_PUBLIC_API as string, formData, {
+      //process.env.NEXT_PUBLIC_API as string
+      const response = await axios.post<ApiResponse>("https://codecult-leaf-serveit.codecult.tech/checking", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
