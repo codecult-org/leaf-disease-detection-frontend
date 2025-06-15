@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-   const nextConfig = {
-     output: 'export',
-   };
+const nextConfig = {
+  // Remove 'output: export' to enable server functions and API routes
+};
 
-   export default nextConfig;
+export default nextConfig;
